@@ -244,10 +244,12 @@ namespace CSV
 
 
             string studentsExcelPath = $"{Constants.Locations.DataFolder}//students.xlsx";
-            //using (StreamWriter fs = new StreamWriter(studentsxmlPath))
-            //{
+            using (StreamWriter fs = new StreamWriter(studentsxmlPath))
+            {
+
+
                 SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.
-                Create(studentsExcelPath, SpreadsheetDocumentType.Workbook);
+                    Create(studentsExcelPath, SpreadsheetDocumentType.Workbook);
 
                 // Add a WorkbookPart to the document.
                 WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
@@ -276,86 +278,91 @@ namespace CSV
                 //var excelcolumns = sheetData.Descendants<DocumentFormat.OpenXml.Spreadsheet.Column>().ToList();
                 int rowindex = 1;
                 //int columnindex = 1;
+
                 foreach (var student in students)
                 {
 
                     Row row = new Row();
-                   // DocumentFormat.OpenXml.Spreadsheet.Columns cs = new DocumentFormat.OpenXml.Spreadsheet.Columns();
+                    //DocumentFormat.OpenXml.Spreadsheet.Columns cs = new DocumentFormat.OpenXml.Spreadsheet.Columns();
                     row.RowIndex = (UInt32)rowindex;
-                Cell cell = new Cell()
-                {
+                    Cell cell = new Cell()
+                    {
 
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.FirstName.ToString())
-                        
-                    
-                        
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(student.FirstName.ToString())
+
+
+
                     };
-                Cell cell1 = new Cell()
-                {
+                    Cell cell1 = new Cell()
+                    {
 
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.LastName.ToString())
-
-
-
-                };
-                Cell cell2 = new Cell()
-                {
-
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.StudentId.ToString())
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(student.LastName.ToString())
 
 
 
-                };
-                Cell cell3 = new Cell()
-                {
+                    };
+                    Cell cell2 = new Cell()
+                    {
 
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.MyRecord.ToString())
-
-
-
-                };
-                Cell cell4 = new Cell()
-                {
-
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.age.ToString())
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(student.StudentId.ToString())
 
 
 
-                };
-                Cell cell5 = new Cell()
-                {
+                    };
+                    //Cell cell3 = new Cell()
+                    //{
 
-                    DataType = CellValues.String,
-                    CellValue = new CellValue(student.DateOfBirthDT.ToString())
+                    //    DataType = CellValues.String,
+                    //    CellValue = new CellValue(Convert.ToString(student.MyRecord.ToString()))
 
+                    //    //CellValue = new DocumentFormat.OpenXml.Spreadsheet.CellValue(Convert.ToString(student.MyRecord.ToString()))
 
+                    //};
+                    Cell cell4 = new Cell()
+                    {
 
-                };
-
-                //Cell cell6 = new Cell()
-                //{
-
-                //    DataType = CellValues.String,
-                //    CellValue = new CellValue(student.Guid.ToString())
-
-
-
-                //};
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(student.age.ToString())
 
 
 
-                row.Append(cell);
-                row.Append(cell1);
-                row.Append(cell2);
-                row.Append(cell3);
-                row.Append(cell4);
-                row.Append(cell5);
-                sheetData.Append(row);
+                    };
+                    Cell cell5 = new Cell()
+                    {
+
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(Convert.ToString(student.DateOfBirthDT.ToString()))
+
+
+
+                    };
+
+                    Cell cell6 = new Cell()
+                    {
+
+                        DataType = CellValues.String,
+                        CellValue = new CellValue(Convert.ToString(Guid.NewGuid().ToString()))
+
+
+
+                    };
+
+
+
+                    row.Append(cell);
+                    row.Append(cell1);
+                    row.Append(cell2);
+                    //row.Append(cell3);
+                    row.Append(cell4);
+                    row.Append(cell5);
+                    row.Append(cell6);
+
+
+
+                    sheetData.Append(row);
 
 
 
@@ -369,153 +376,197 @@ namespace CSV
 
                 // Close the document.
                 spreadsheetDocument.Close();
-
-                
-
-            
-
-
-
-
-
-
-
-
-            
-            // Create a spreadsheet document by supplying the filepath.
-            // By default, AutoSave = true, Editable = true, and Type = xlsx.
-            
-
-
-
-
-
-
-
-
-            //string document = $"{Constants.Locations.DataFolder}//students.docx";
-            //using (WordprocessingDocument wordprocessingDocument =
-            //WordprocessingDocument.Open(document, true))
-            //{
-            //    MainDocumentPart mainPart = wordprocessingDocument.MainDocumentPart;
-
-            //    ImagePart imagePart = mainPart.AddImagePart(ImagePartType.Jpeg);
-
-            //    using (FileStream stream = new FileStream(studentsWordPath, FileMode.Open))
-            //    {
-            //        imagePart.FeedData(stream);
-            //    }
-
-            //    //NewMethod(wordprocessingDocument, mainPart, imagePart);
-
-            //    AddImageToBody(wordprocessingDocument, mainPart.GetIdOfPart(imagePart));
-
-
-
-            //    foreach (var student in students)
-            //    {
-
-            //        // Define the reference of the image.
-            //        var element =
-            //             new Drawing(
-            //                 new DW.Inline(
-            //                     new DW.Extent() { Cx = 990000L, Cy = 792000L },
-            //                     new DW.EffectExtent()
-            //                     {
-            //                         LeftEdge = 0L,
-            //                         TopEdge = 0L,
-            //                         RightEdge = 0L,
-            //                         BottomEdge = 0L
-            //                     },
-            //                     new DW.DocProperties()
-            //                     {
-            //                         Id = (UInt32Value)1U,
-            //                         Name = "Picture 1"
-            //                     },
-            //                     new DW.NonVisualGraphicFrameDrawingProperties(
-            //                         new A.GraphicFrameLocks() { NoChangeAspect = true }),
-            //                     new A.Graphic(
-            //                         new A.GraphicData(
-            //                             new PIC.Picture(
-            //                                 new PIC.NonVisualPictureProperties(
-            //                                     new PIC.NonVisualDrawingProperties()
-            //                                     {
-            //                                         Id = (UInt32Value)0U,
-            //                                         Name = "New Bitmap Image.jpg"
-            //                                     },
-            //                                     new PIC.NonVisualPictureDrawingProperties()),
-            //                                 new PIC.BlipFill(
-            //                                     new A.Blip(
-            //                                         new A.BlipExtensionList(
-            //                                             new A.BlipExtension()
-            //                                             {
-            //                                                 Uri =
-            //                                                    "{28A0092B-C50C-407E-A947-70E740481C1C}"
-            //                                             })
-            //                                     )
-            //                                     {
-            //                                         Embed = relationshipId,
-            //                                         CompressionState =
-            //                                         A.BlipCompressionValues.Print
-            //                                     },
-            //                                     new A.Stretch(
-            //                                         new A.FillRectangle())),
-            //                                 new PIC.ShapeProperties(
-            //                                     new A.Transform2D(
-            //                                         new A.Offset() { X = 0L, Y = 0L },
-            //                                         new A.Extents() { Cx = 990000L, Cy = 792000L }),
-            //                                     new A.PresetGeometry(
-            //                                         new A.AdjustValueList()
-            //                                     )
-            //                                     { Preset = A.ShapeTypeValues.Rectangle }))
-            //                         )
-            //                         { Uri = "http://schemas.openxmlformats.org/drawingml/2006/picture" })
-            //                 )
-            //                 {
-            //                     DistanceFromTop = (UInt32Value)0U,
-            //                     DistanceFromBottom = (UInt32Value)0U,
-            //                     DistanceFromLeft = (UInt32Value)0U,
-            //                     DistanceFromRight = (UInt32Value)0U,
-            //                     EditId = "50D07946"
-            //                 });
-
-            //        // Append the reference to body, the element should be in a Run.
-            //        wordDoc.MainDocumentPart.Document.Body.AppendChild(new Paragraph(new Run(element)));
-
-
-
-
-
-            //}
-
-            //}
-
-
-
-
-
-
-
-
-
-
-
-
-            //}
+            }
 
             return;
 
-            //FileInfo newfileinfo = new FileInfo(newfilePath);
-            //Image studentImage = Imaging.Base64ToImage(student.ImageData);
-            //studentImage.Save(newfileinfo.FullName, ImageFormat.Jpeg);
         }
+        
 
-        //private static void NewMethod(WordprocessingDocument wordprocessingDocument, MainDocumentPart mainPart, ImagePart imagePart)
-        //{
-        //    AddImageToBody(wordprocessingDocument, mainPart.GetIdOfPart(imagePart));
-        //}
+
     }
-}
+    
+    }
+//}
+
+            //using (StreamWriter fs = new StreamWriter(studentsxmlPath))
+            //{
+            //    SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.
+            //    Create(studentsExcelPath, SpreadsheetDocumentType.Workbook);
+
+            //    // Add a WorkbookPart to the document.
+            //    WorkbookPart workbookpart = spreadsheetDocument.AddWorkbookPart();
+            //    workbookpart.Workbook = new Workbook();
+
+            //    // Add a WorksheetPart to the WorkbookPart.
+            //    WorksheetPart worksheetPart = workbookpart.AddNewPart<WorksheetPart>();
+            //    worksheetPart.Worksheet = new Worksheet(new SheetData());
+
+            //    // Add Sheets to the Workbook.
+            //    Sheets sheets = spreadsheetDocument.WorkbookPart.Workbook.
+            //        AppendChild<Sheets>(new Sheets());
+
+            //    // Append a new worksheet and associate it with the workbook.
+            //    Sheet sheet = new Sheet()
+            //    {
+            //        Id = spreadsheetDocument.WorkbookPart.
+            //        GetIdOfPart(worksheetPart),
+            //        SheetId = 1,
+            //        Name = "mySheet"
+            //    };
+
+
+                //SheetData sheetData = worksheetPart.Worksheet.GetFirstChild<SheetData>();
+                //var excelRows = sheetData.Descendants<DocumentFormat.OpenXml.Spreadsheet.Row>().ToList();
+                ////var excelcolumns = sheetData.Descendants<DocumentFormat.OpenXml.Spreadsheet.Column>().ToList();
+                //int rowindex = 1;
+                ////int columnindex = 1;
+                //foreach (var student in students)
+                //{
+
+                //    Row row = new Row();
+                //    // DocumentFormat.OpenXml.Spreadsheet.Columns cs = new DocumentFormat.OpenXml.Spreadsheet.Columns();
+                //    row.RowIndex = (UInt32)rowindex;
+                //    Cell cell = new Cell()
+                //    {
+
+                //        DataType = CellValues.String,
+                //        CellValue = new CellValue(student.FirstName.ToString())
+
+
+
+                //    };
+                //    Cell cell1 = new Cell()
+                //    {
+
+                //        DataType = CellValues.String,
+                //        CellValue = new CellValue(student.LastName.ToString())
+
+
+
+                //    };
+                //    Cell cell2 = new Cell()
+                //    {
+
+                //        DataType = CellValues.String,
+                //        CellValue = new CellValue(student.StudentId.ToString())
+
+
+
+                //    };
+                //    Cell cell3 = new Cell()
+                //    {
+
+                //        DataType = CellValues.String,
+                //        CellValue = new CellValue(student.MyRecord.ToString())
+
+
+
+                    //};
+                    //Cell cell4 = new Cell()
+                    //{
+
+                    //    DataType = CellValues.String,
+                    //    CellValue = new CellValue(student.age.ToString())
+
+
+
+                    //};
+                    //Cell cell5 = new Cell()
+                    //{
+
+                    //    DataType = CellValues.String,
+                    //    CellValue = new CellValue(student.DateOfBirthDT.ToString())
+
+
+
+                    //};
+
+                    //Cell cell6 = new Cell()
+                    //{
+
+                    //    DataType = CellValues.String,
+                    //    CellValue = new CellValue(Convert.ToString(Guid.NewGuid().ToString()))
+
+
+
+                    //};
+
+
+
+                    //row.Append(cell);
+                    //row.Append(cell1);
+                    //row.Append(cell2);
+                    //row.Append(cell3);
+                    //row.Append(cell4);
+                    //row.Append(cell5);
+                    //row.Append(cell6);
+                    //sheetData.Append(row);
+
+
+
+                    //how to write the data in cell
+                //    rowindex++;
+                //}
+
+                //sheets.Append(sheet);
+
+                //workbookpart.Workbook.Save();
+
+                //// Close the document.
+                //spreadsheetDocument.Close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+                // Create a spreadsheet document by supplying the filepath.
+                // By default, AutoSave = true, Editable = true, and Type = xlsx.
+
+
+
+
+
+
+
+
+
+              
+
+
+
+
+
+
+
+
+
+
+
+               
+
+            
+
+                //FileInfo newfileinfo = new FileInfo(newfilePath);
+                //Image studentImage = Imaging.Base64ToImage(student.ImageData);
+                //studentImage.Save(newfileinfo.FullName, ImageFormat.Jpeg);
+           // }
+
+            //private static void NewMethod(WordprocessingDocument wordprocessingDocument, MainDocumentPart mainPart, ImagePart imagePart)
+            //{
+            //    AddImageToBody(wordprocessingDocument, mainPart.GetIdOfPart(imagePart));
+    //        //}
+    //    }
+    //}
+
 
 
     //    public static string UploadFile(string sourceFilePath, string destinationFileUrl, string username = Constants.FTP.UserName, string password = Constants.FTP.Password)

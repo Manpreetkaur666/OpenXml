@@ -34,6 +34,8 @@ namespace CSV.Models
         public string MyRecord { get; set; }
         public string AbsoluteUrl { get; set; }
         public string Directory { get; set; }
+        
+
 
         public string InfoCSVPath { get { return (Constants.FTP.BaseUrl + "/" + Directory + "/" + Constants.Locations.InfoFile); } }
         public string MyImagePath { get { return (Constants.FTP.BaseUrl + "/" + Directory + "/" + Constants.Locations.ImageFile); } }
@@ -122,5 +124,7 @@ namespace CSV.Models
             }
 
         }
+
+        
     }
 }
