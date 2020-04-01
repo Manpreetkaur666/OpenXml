@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{B731651A-4F90-47FC-8E1E-8122A43FAD5F}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="openxml/CreatePresentationDocument.cs">
+    <Files>
+      <File FileName="WordDocument/wordprocess.xml" Line="10" Column="18" />
+      <File FileName="WordDocument/WordprocessingDocument.cs" />
+      <File FileName="studentsWordPath.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="Models/Constants.cs" />
+      <File FileName="Content/Data/students.csv" />
+      <File FileName="Content/Data/students.json" />
+      <File FileName="Content/Data/students.xml" />
+      <File FileName="Models/Imaging.cs" />
+      <File FileName="Models/Student.cs" />
+      <File FileName="openxml/CreatePresentationDocument.cs" Line="63" Column="41" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CSV" expanded="True">
+            <Node name="CSV" expanded="True">
+              <Node name="Content" expanded="True">
+                <Node name="Data" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+              <Node name="openxml" expanded="True">
+                <Node name="CreatePresentationDocument.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.CSV PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
