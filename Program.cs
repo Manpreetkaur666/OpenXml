@@ -12,8 +12,9 @@ using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using DocumentFormat.OpenXml.Spreadsheet;
-
-
+using Text = DocumentFormat.OpenXml.Wordprocessing.Text;
+using Break = DocumentFormat.OpenXml.Wordprocessing.Break;
+using Run = DocumentFormat.OpenXml.Wordprocessing.Run;
 
 namespace CSV
 {
@@ -178,68 +179,68 @@ namespace CSV
             //create word document
 
 
-            //string studentsWordPath = $"{Constants.Locations.DataFolder}//students.docx";
-            ////string studentsImagePath = $"{Constants.Locations.ImagesFolder}";
-            //// Create a document by supplying the filepath
-            
-            //using (WordprocessingDocument wordDocument =
-            //    WordprocessingDocument.Create(studentsWordPath, WordprocessingDocumentType.Document))
-            //{
+            string studentsWordPath = $"{Constants.Locations.DataFolder}//students.docx";
+            //string studentsImagePath = $"{Constants.Locations.ImagesFolder}";
+            // Create a document by supplying the filepath
 
-            //    // Add a main document part. 
-            //    MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
+            using (WordprocessingDocument wordDocument =
+                WordprocessingDocument.Create(studentsWordPath, WordprocessingDocumentType.Document))
+            {
 
-            //    // Create the document structure and add some text.
-            //    mainPart.Document = new Document();
-            //    Body body = mainPart.Document.AppendChild(new Body());
-            //    Paragraph para = body.AppendChild(new Paragraph());
-            //    //ImagePart imagePart = mainPart.AddImagePart(ImagePartType.Jpeg);
-            //    //Paragraph para = body.AppendChild(new Paragraph(new Run
-            //    //     (new Break() { Type = BreakValues.Page })));
+                // Add a main document part. 
+                MainDocumentPart mainPart = wordDocument.AddMainDocumentPart();
 
-
-            //    //Paragraph newPara = new Paragraph(new Run
-            //    //     (new Break() { Type = BreakValues.Page },
-            //    //     new Text("text on the new page")));
-
-            //    Run run = para.AppendChild(new Run());
-            //    //mainPart = wordDocument.MainDocumentPart;
-
-            //    //ImagePart imagePart = mainPart.AddImagePart(studentsImagePath);
-            //    //using (StreamWriter fs = new StreamWriter(studentsWordPath))
-            //    //
+                // Create the document structure and add some text.
+                mainPart.Document = new Document();
+                Body body = mainPart.Document.AppendChild(new Body());
+                Paragraph para = body.AppendChild(new Paragraph());
+                //ImagePart imagePart = mainPart.AddImagePart(ImagePartType.Jpeg);
+                //Paragraph para = body.AppendChild(new Paragraph(new Run
+                //     (new Break() { Type = BreakValues.Page })));
 
 
-            //    foreach (var student in students)
-            //    {
-            //        run.AppendChild(new Text("My name is :  "));
-            //        //run.AppendChild(new Text(student.ToString()));
-            //        run.AppendChild(new Text(student.FirstName.ToString()));
-            //        run.AppendChild(new Text("  ,  "));
+                //Paragraph newPara = new Paragraph(new Run
+                //     (new Break() { Type = BreakValues.Page },
+                //     new Text("text on the new page")));
 
-            //        run.AppendChild(new Text("My Student id is: "));
+                Run run = para.AppendChild(new Run());
+                //mainPart = wordDocument.MainDocumentPart;
 
-
-            //        run.AppendChild(new Text(student.StudentId.ToString()));
-            //        run.AppendChild(new Text("  ,  "));
-
-            //        //para = new Paragraph(new Run(new Break() { Type = BreakValues.Page }));
-            //        //mainPart = wordDocument.MainDocumentPart;
-
-            //        //mainPart.Document.Body.InsertAfter(para, mainPart.Document.Body.LastChild);
-            //        //mainPart.Document.Save();
-
-            //        //run.AppendChild(new Paragraph(new Run
-            //        // (new Break() { Type = BreakValues.Page })));
-
-            //        run.AppendChild(new Break() { Type = BreakValues.Page });
+                //ImagePart imagePart = mainPart.AddImagePart(studentsImagePath);
+                //using (StreamWriter fs = new StreamWriter(studentsWordPath))
+                //
 
 
+                foreach (var student in students)
+                {
+                    run.AppendChild(new Text("My name is :  "));
+                    //run.AppendChild(new Text(student.ToString()));
+                    run.AppendChild(new Text(student.FirstName.ToString()));
+                    run.AppendChild(new Text("  ,  "));
+
+                    run.AppendChild(new Text("My Student id is: "));
+
+
+                    run.AppendChild(new Text(student.StudentId.ToString()));
+                    run.AppendChild(new Text("  ,  "));
+
+                    //para = new Paragraph(new Run(new Break() { Type = BreakValues.Page }));
+                    //mainPart = wordDocument.MainDocumentPart;
+
+                    //mainPart.Document.Body.InsertAfter(para, mainPart.Document.Body.LastChild);
+                    //mainPart.Document.Save();
+
+                    //run.AppendChild(new Paragraph(new Run
+                    // (new Break() { Type = BreakValues.Page })));
+
+                    run.AppendChild(new Break() { Type = BreakValues.Page });
 
 
 
-            //    }
-            //}
+
+
+                }
+            }
 
 
             string studentsExcelPath = $"{Constants.Locations.DataFolder}//students.xlsx";
@@ -279,7 +280,7 @@ namespace CSV
                 {
 
                     Row row = new Row();
-                    DocumentFormat.OpenXml.Spreadsheet.Columns cs = new DocumentFormat.OpenXml.Spreadsheet.Columns();
+                   // DocumentFormat.OpenXml.Spreadsheet.Columns cs = new DocumentFormat.OpenXml.Spreadsheet.Columns();
                     row.RowIndex = (UInt32)rowindex;
                 Cell cell = new Cell()
                 {
@@ -290,7 +291,6 @@ namespace CSV
                     
                         
                     };
-
                 Cell cell1 = new Cell()
                 {
 
@@ -298,9 +298,64 @@ namespace CSV
                     CellValue = new CellValue(student.LastName.ToString())
 
 
+
                 };
+                Cell cell2 = new Cell()
+                {
+
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(student.StudentId.ToString())
+
+
+
+                };
+                Cell cell3 = new Cell()
+                {
+
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(student.MyRecord.ToString())
+
+
+
+                };
+                Cell cell4 = new Cell()
+                {
+
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(student.age.ToString())
+
+
+
+                };
+                Cell cell5 = new Cell()
+                {
+
+                    DataType = CellValues.String,
+                    CellValue = new CellValue(student.DateOfBirthDT.ToString())
+
+
+
+                };
+
+                //Cell cell6 = new Cell()
+                //{
+
+                //    DataType = CellValues.String,
+                //    CellValue = new CellValue(student.Guid.ToString())
+
+
+
+                //};
+
+
+
                 row.Append(cell);
-                    sheetData.Append(row);
+                row.Append(cell1);
+                row.Append(cell2);
+                row.Append(cell3);
+                row.Append(cell4);
+                row.Append(cell5);
+                sheetData.Append(row);
 
 
 

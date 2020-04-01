@@ -1,10 +1,10 @@
 ﻿<Properties StartupConfiguration="{B731651A-4F90-47FC-8E1E-8122A43FAD5F}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="openxml/CreatePresentationDocument.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="WordDocument/wordprocess.xml" Line="10" Column="18" />
       <File FileName="WordDocument/WordprocessingDocument.cs" />
       <File FileName="studentsWordPath.cs" />
-      <File FileName="Program.cs" />
+      <File FileName="Program.cs" Line="283" Column="22" />
       <File FileName="Models/Constants.cs" />
       <File FileName="Content/Data/students.csv" />
       <File FileName="Content/Data/students.json" />
@@ -19,12 +19,11 @@
           <Node name="CSV" expanded="True">
             <Node name="CSV" expanded="True">
               <Node name="Content" expanded="True">
-                <Node name="Data" expanded="True" />
+                <Node name="Data" expanded="True">
+                  <Node name="students.xlsx" selected="True" />
+                </Node>
               </Node>
               <Node name="Models" expanded="True" />
-              <Node name="openxml" expanded="True">
-                <Node name="CreatePresentationDocument.cs" selected="True" />
-              </Node>
             </Node>
           </Node>
         </State>
